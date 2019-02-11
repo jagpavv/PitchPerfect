@@ -12,48 +12,24 @@ class PlaySoundsViewController: UIViewController {
   @IBOutlet weak var reverbButton: UIButton!
   @IBOutlet weak var stopButton: UIButton!
 
-  var recordedAudioURL: AVAudioRecorder! {
-    didSet {
-      print("recordedAudioURL: \(recordedAudioURL)")
-    }
-  }
-  var audioFile: AVAudioFile! {
-    didSet {
-      print("audioFile: \(audioFile)")
-    }
-  }
-  var audioEngine: AVAudioEngine! {
-    didSet {
-      print("audioEngine: \(audioEngine)")
-    }
-  }
-  var audioPlayerNode: AVAudioPlayerNode! {
-    didSet {
-      print("audioPlayerNode: \(audioPlayerNode)")
-    }
-  }
-  var stopTimer: Timer! {
-    didSet {
-      print("stopTimer: \(stopTimer)")
-    }
-  }
+  var recordedAudioURL: URL!
+  var audioFile: AVAudioFile!
+  var audioEngine: AVAudioEngine!
+  var audioPlayerNode: AVAudioPlayerNode!
+  var stopTimer: Timer!
 
   enum ButtonType: Int {
-    case slow = 0, fast, chipmunk, vader, echo, reverb
+    case slow = 0, fast, highPitch, lowPitch, reverb, echo
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
     setupAudio()
-//    playSound()
-
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-//    playSound()
     configureUI(.notPlaying)
-//    playSound()
   }
 
   // MARK: Actions
@@ -64,18 +40,15 @@ class PlaySoundsViewController: UIViewController {
       playSound(rate: 0.5)
     case .fast:
       playSound(rate: 1.5)
-    case .chipmunk:
+    case .highPitch:
       playSound(pitch: 1000)
-    case .vader:
+    case .lowPitch:
       playSound(pitch: -1000)
     case .echo:
       playSound(echo: true)
     case .reverb:
       playSound(reverb: true)
     }
-//    setupAudio()
-//    playSound()
-
     configureUI(.playing)
   }
 

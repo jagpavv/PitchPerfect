@@ -2,7 +2,6 @@ import UIKit
 import AVFoundation
 
 // MARK: - PlaySoundsViewController: AVAudioPlayerDelegate
-
 extension PlaySoundsViewController: AVAudioPlayerDelegate {
 
   // MARK: Alerts
@@ -20,20 +19,22 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
   }
 
   // MARK: PlayingState (raw values correspond to sender tags)
-  enum PlayingState { case playing, notPlaying }
+  enum PlayingState {
+    case playing, notPlaying
+  }
 
   // MARK: Audio Functions
   func setupAudio() {
     // initialize (recording) audio file
     do {
-      audioFile = try AVAudioFile(forReading: recordedAudioURL.url as URL)
+      audioFile = try AVAudioFile(forReading: recordedAudioURL as URL)
     } catch {
       showAlert(Alerts.AudioFileError, message: String(describing: error))
     }
   }
 
   func playSound(rate: Float? = nil, pitch: Float? = nil, echo: Bool = false, reverb: Bool = false) {
-print("recordedAudioURL : \(String(describing: recordedAudioURL))")
+
     // initialize audio engine components
     audioEngine = AVAudioEngine()
 
@@ -73,37 +74,9 @@ print("recordedAudioURL : \(String(describing: recordedAudioURL))")
       connectAudioNodes(audioPlayerNode, changeRatePitchNode, audioEngine.outputNode)
     }
 
-
-
-//    AVAudioFile *file = [[AVAudioFile alloc] initForReading:_fileURL commonFormat:AVAudioPCMFormatFloat32 interleaved:NO error:nil];
-//    AVAudioPCMBuffer *buffer = [[AVAudioPCMBuffer alloc] initWithPCMFormat:file.processingFormat frameCapacity:(AVAudioFrameCount)file.length];
-//    [file readIntoBuffer:buffer error:&error];
-//
-//    [_player scheduleBuffer:buffer atTime:nil options:AVAudioPlayerNodeBufferInterrupts completionHandler:^{
-//      // reminder: we're not on the main thread in here
-//      dispatch_async(dispatch_get_main_queue(), ^{
-//      NSLog(@"done playing, as expected!");
-//      });
-//      }];
-
-    guard let buffer = AVAudioPCMBuffer(pcmFormat: audioFile!.processingFormat, frameCapacity: AVAudioFrameCount(audioFile!.length)) else {
-      print("NO")
-      return
-    }
-
-    do {
-      try audioFile.read(into: buffer)
-    } catch {
-      showAlert(Alerts.AudioFileError, message: String(describing: error))
-    }
-
     // schedule to play and start the engine!
     audioPlayerNode.stop()
-    audioPlayerNode.scheduleBuffer(buffer,
-                                   at: nil,
-                                   options: [.interrupts],
-                                   completionCallbackType: .dataPlayedBack,
-                                   completionHandler: { (type) in
+    audioPlayerNode.scheduleFile(audioFile, at: nil) {
 
       var delayInSeconds: Double = 0
 
@@ -116,12 +89,10 @@ print("recordedAudioURL : \(String(describing: recordedAudioURL))")
         }
       }
 
-      print("delay: \(delayInSeconds)")
-
       // schedule a stop timer for when audio finishes playing
       self.stopTimer = Timer(timeInterval: delayInSeconds, target: self, selector: #selector(PlaySoundsViewController.stopAudio), userInfo: nil, repeats: false)
       RunLoop.main.add(self.stopTimer!, forMode: RunLoop.Mode.default)
-    })
+    }
 
     do {
       try audioEngine.start()
@@ -131,8 +102,6 @@ print("recordedAudioURL : \(String(describing: recordedAudioURL))")
     }
 
     // play the recording!
-    print("play")
-
     audioPlayerNode.play()
   }
 
@@ -140,12 +109,10 @@ print("recordedAudioURL : \(String(describing: recordedAudioURL))")
 
     if let audioPlayerNode = audioPlayerNode {
       audioPlayerNode.stop()
-      print("stop")
     }
 
     if let stopTimer = stopTimer {
       stopTimer.invalidate()
-      print("invalidate")
     }
 
     configureUI(.notPlaying)
@@ -153,8 +120,6 @@ print("recordedAudioURL : \(String(describing: recordedAudioURL))")
     if let audioEngine = audioEngine {
       audioEngine.stop()
       audioEngine.reset()
-      print("reset")
-
     }
   }
 

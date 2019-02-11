@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  PitchPerfect
-//
-//  Created by Eunjin on 2/10/19.
-//  Copyright © 2019 EunjinKim. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
