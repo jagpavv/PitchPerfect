@@ -3,29 +3,32 @@ import AVFoundation
 
 class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
 
+  //MARK: Outlets
   var audioRecorder: AVAudioRecorder!
   var recordingLabel: UILabel!
   var recordButton: UIButton!
   var stopRecordingButton: UIButton!
   var isRecording = false
-  var url: URL?
+  var url: URL!
 
+  // MARK: - View life cycle
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
-    makeButton()
+    makeUIComponents()
     setupButtons(isRecording)
   }
 
-    func setupButtons(_ enabled: Bool) {
-      if enabled {
-        recordingLabel.text = "Recording in progress"
-      } else {
-        recordingLabel.text = "Tap to Record"
-      }
-      stopRecordingButton.isEnabled = enabled
-      recordButton.isEnabled = !enabled
+  // MARK: - functions
+  func setupButtons(_ enabled: Bool) {
+    if enabled {
+      recordingLabel.text = "Recording in progress"
+    } else {
+      recordingLabel.text = "Tap to Record"
     }
+    stopRecordingButton.isEnabled = enabled
+    recordButton.isEnabled = !enabled
+  }
 
   @objc func recordAudio(_ sender: UIButton) {
     isRecording = true
@@ -66,7 +69,8 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     }
   }
 
-  func makeButton() {
+  // MARK: - configure UI components
+  func makeUIComponents() {
     let recordButton = UIButton()
     recordButton.addTarget(self, action: #selector(recordAudio), for: .touchUpInside)
     let recordButtonImage = UIImage(named: "Record")
@@ -110,7 +114,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
 
 // MARK: - recordedAudioURLDelegate
 extension RecordSoundsViewController: recordedAudioURLDelegate {
-  var recordedAudioURL: URL? {
+  var recordedAudioURL: URL {
     return url
   }
 }
