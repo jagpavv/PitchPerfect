@@ -13,9 +13,7 @@
 		AC04CC282210344D00EF5C61 /* PlaySoundsViewController+Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC04CC262210344D00EF5C61 /* PlaySoundsViewController+Audio.swift */; };
 		AC25E77422100217007211E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25E77322100217007211E4 /* AppDelegate.swift */; };
 		AC25E77622100217007211E4 /* RecordSoundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25E77522100217007211E4 /* RecordSoundsViewController.swift */; };
-		AC25E77922100217007211E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC25E77722100217007211E4 /* Main.storyboard */; };
 		AC25E77B2210021B007211E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC25E77A2210021B007211E4 /* Assets.xcassets */; };
-		AC25E77E2210021B007211E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC25E77C2210021B007211E4 /* LaunchScreen.storyboard */; };
 		AC25E7892210021B007211E4 /* PitchPerfectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25E7882210021B007211E4 /* PitchPerfectTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,9 +33,7 @@
 		AC25E77022100217007211E4 /* PitchPerfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PitchPerfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC25E77322100217007211E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC25E77522100217007211E4 /* RecordSoundsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSoundsViewController.swift; sourceTree = "<group>"; };
-		AC25E77822100217007211E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AC25E77A2210021B007211E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AC25E77D2210021B007211E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC25E77F2210021B007211E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC25E7842210021B007211E4 /* PitchPerfectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PitchPerfectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC25E7882210021B007211E4 /* PitchPerfectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchPerfectTests.swift; sourceTree = "<group>"; };
@@ -86,9 +82,7 @@
 				AC25E77322100217007211E4 /* AppDelegate.swift */,
 				AC25E77522100217007211E4 /* RecordSoundsViewController.swift */,
 				AC04CC2322101E2200EF5C61 /* PlaySoundsViewController.swift */,
-				AC25E77722100217007211E4 /* Main.storyboard */,
 				AC25E77A2210021B007211E4 /* Assets.xcassets */,
-				AC25E77C2210021B007211E4 /* LaunchScreen.storyboard */,
 				AC25E77F2210021B007211E4 /* Info.plist */,
 				AC04CC262210344D00EF5C61 /* PlaySoundsViewController+Audio.swift */,
 			);
@@ -185,9 +179,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC25E77E2210021B007211E4 /* LaunchScreen.storyboard in Resources */,
 				AC25E77B2210021B007211E4 /* Assets.xcassets in Resources */,
-				AC25E77922100217007211E4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,25 +223,6 @@
 			targetProxy = AC25E7852210021B007211E4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		AC25E77722100217007211E4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AC25E77822100217007211E4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		AC25E77C2210021B007211E4 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AC25E77D2210021B007211E4 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		AC25E78B2210021B007211E4 /* Debug */ = {
