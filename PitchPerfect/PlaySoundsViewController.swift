@@ -10,13 +10,11 @@ class PlaySoundsViewController: UIViewController {
   // MARK: Outlets
   var slowButton: UIButton!
   var fastButton: UIButton!
-
   var highPitchButton: UIButton!
   var lowPitchButton: UIButton!
   var echoButton: UIButton!
   var reverbButton: UIButton!
   var stopButton: UIButton!
-
   var recordedAudioURL: URL!
   var audioFile: AVAudioFile!
   var audioEngine: AVAudioEngine!
@@ -134,7 +132,6 @@ class PlaySoundsViewController: UIViewController {
     stackViewThree.distribution = UIStackView.Distribution.fillEqually
     stackViewThree.spacing = 0
     baseStackView.addArrangedSubview(stackViewThree)
-
 
     // buttons
     settingButtons(button: slowButton, imageName: "Slow", tagId: 0)
