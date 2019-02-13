@@ -19,6 +19,11 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     setupButtons(isRecording)
   }
 
+  override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
+    audioRecorder.stop()
+  }
+
   // MARK: - functions
   func setupButtons(_ enabled: Bool) {
     if enabled {
