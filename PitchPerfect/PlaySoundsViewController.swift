@@ -10,13 +10,11 @@ class PlaySoundsViewController: UIViewController {
   // MARK: Outlets
   var slowButton: UIButton!
   var fastButton: UIButton!
-
   var highPitchButton: UIButton!
   var lowPitchButton: UIButton!
   var echoButton: UIButton!
   var reverbButton: UIButton!
   var stopButton: UIButton!
-
   var recordedAudioURL: URL!
   var audioFile: AVAudioFile!
   var audioEngine: AVAudioEngine!
@@ -39,6 +37,11 @@ class PlaySoundsViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     configureUI(.notPlaying)
+  }
+
+  override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
+    stopAudio()
   }
 
   // MARK: Actions
@@ -65,8 +68,14 @@ class PlaySoundsViewController: UIViewController {
     stopAudio()
   }
 
-  func makePlayButtons() {
+  func settingButtons(button: UIButton, imageName: String, tagId: Int) {
+    button.addTarget(self, action: #selector(playSoundForButton), for: .touchUpInside)
+    let image = UIImage(named: "\(imageName)")
+    button.setImage(image, for: .normal)
+    button.tag = tagId
+  }
 
+  func makePlayButtons() {
     let slowButton = UIButton()
     let fastButton = UIButton()
     let highPitchButton = UIButton()
@@ -124,51 +133,29 @@ class PlaySoundsViewController: UIViewController {
     stackViewThree.spacing = 0
     baseStackView.addArrangedSubview(stackViewThree)
 
-
     // buttons
-    slowButton.addTarget(self, action: #selector(playSoundForButton), for: .touchUpInside)
-    let slowButtonImage = UIImage(named: "Slow")
-    slowButton.setImage(slowButtonImage, for: .normal)
-    slowButton.tag = 0
+    settingButtons(button: slowButton, imageName: "Slow", tagId: 0)
     stackViewOne.addArrangedSubview(slowButton)
     self.slowButton = slowButton
 
-    fastButton.addTarget(self, action: #selector(playSoundForButton), for: .touchUpInside)
-    let fastButtonImage = UIImage(named: "Fast")
-    fastButton.setImage(fastButtonImage, for: .normal)
-    fastButton.tag = 1
+    settingButtons(button: fastButton, imageName: "Fast", tagId: 1)
     stackViewOne.addArrangedSubview(fastButton)
     self.fastButton = fastButton
 
-
-    highPitchButton.addTarget(self, action: #selector(playSoundForButton), for: .touchUpInside)
-    let highPitchButtonImage = UIImage(named: "HighPitch")
-    highPitchButton.setImage(highPitchButtonImage, for: .normal)
-    highPitchButton.tag = 2
+    settingButtons(button: highPitchButton, imageName: "HighPitch", tagId: 2)
     stackViewTwo.addArrangedSubview(highPitchButton)
     self.highPitchButton = highPitchButton
 
-    lowPitchButton.addTarget(self, action: #selector(playSoundForButton), for: .touchUpInside)
-    let lowPitchButtonImage = UIImage(named: "LowPitch")
-    lowPitchButton.setImage(lowPitchButtonImage, for: .normal)
-    lowPitchButton.tag = 3
+    settingButtons(button: lowPitchButton, imageName: "LowPitch", tagId: 3)
     stackViewTwo.addArrangedSubview(lowPitchButton)
     self.lowPitchButton = lowPitchButton
 
-
-    echoButton.addTarget(self, action: #selector(playSoundForButton), for: .touchUpInside)
-    let echoButtonImage = UIImage(named: "Echo")
-    echoButton.setImage(echoButtonImage, for: .normal)
-    echoButton.tag = 4
+    settingButtons(button: echoButton, imageName: "Echo", tagId: 4)
     stackViewThree.addArrangedSubview(echoButton)
     self.echoButton = echoButton
 
-    reverbButton.addTarget(self, action: #selector(playSoundForButton), for: .touchUpInside)
-    let reverbButtonImage = UIImage(named: "Reverb")
-    reverbButton.setImage(reverbButtonImage, for: .normal)
-    reverbButton.tag = 5
+    settingButtons(button: reverbButton, imageName: "Reverb", tagId: 5)
     stackViewThree.addArrangedSubview(reverbButton)
     self.reverbButton = reverbButton
-
   }
 }
